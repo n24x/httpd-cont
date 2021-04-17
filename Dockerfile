@@ -8,8 +8,10 @@ RUN \
 apt update  && \
 apt install -y apache2  &&\
 apt clean &&  \
-rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
+rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* && \
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 COPY index.html /var/www/html
 EXPOSE 80
 
-CMD ["systemctl" ,"start", "apache2"]
+CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
