@@ -9,8 +9,7 @@ apt update  && \
 apt install -y apache2  &&\
 apt clean &&  \
 rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
-#echo "This is a test for HTTPD" > /var/www/html/index.html
-
+COPY index.html /var/www/html
 EXPOSE 80
 
 CMD ["systemctl" ,"start", "apache2"]
